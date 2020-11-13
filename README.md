@@ -1,5 +1,5 @@
 # Plant monitor - front
-
+[![pipeline status](https://gitlab.com/pdelert/plant-front/badges/master/pipeline.svg)](https://github.com/pdelert/plant-front)
 ## Project setup
 ```
 npm install
