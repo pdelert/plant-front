@@ -63,10 +63,10 @@ export default {
     this.token = await getClientCredentials().then((res) => {
       Vue.$cookies.set(ACCESS_TOKEN,
           res[ACCESS_TOKEN],
-          process.env.VUE_APP_AUTH_COOKIE_AT_EXP_TIME,
-          process.env.VUE_APP_AUTH_COOKIE_PATH,
+          3600,
+          '/',
           process.env.VUE_APP_AUTH_COOKIE_DOMAIN,
-          process.env.VUE_APP_AUTH_COOKIE_SECURE);
+          true);
       return res;
     });
 
