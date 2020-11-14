@@ -32,14 +32,14 @@ import oauth from 'axios-oauth-client';
 import Vue from 'vue';
 import {ACCESS_TOKEN} from '@/constants';
 
-const EVENTS_URL = `${process.env.VUE_APP_BACKEND_URL}/plant/server/events`;
+const EVENTS_URL = `${Vue.prototype.$appConfig.backendUrl}/plant/server/events`;
 
 const getClientCredentials = oauth.client(axios.create(), {
-  url: `${process.env.VUE_APP_AUTH_URL}/oauth/token`,
+  url: `${Vue.prototype.$appConfig.authUrl}/oauth/token`,
   grant_type: 'client_credentials',
-  client_id: `${process.env.VUE_APP_CLIENT_ID}`,
-  client_secret: `${process.env.VUE_APP_CLIENT_SECRET}`,
-  audience: `${process.env.VUE_APP_AUTH_AUDIENCE}`
+  client_id: `${Vue.prototype.$appConfig.clientId}`,
+  client_secret: `${Vue.prototype.$appConfig.clientSecret}`,
+  audience: `${Vue.prototype.$appConfig.audience}`
 });
 
 export default {
@@ -63,10 +63,10 @@ export default {
     this.token = await getClientCredentials().then((res) => {
       Vue.$cookies.set(ACCESS_TOKEN,
           res[ACCESS_TOKEN],
-          process.env.VUE_APP_AUTH_COOKIE_AT_EXP_TIME,
-          process.env.VUE_APP_AUTH_COOKIE_PATH,
-          process.env.VUE_APP_AUTH_COOKIE_DOMAIN,
-          process.env.VUE_APP_AUTH_COOKIE_SECURE);
+          3600,
+          '/',
+          Vue.prototype.$appConfig.cookieDomain,
+          true);
       return res;
     });
 

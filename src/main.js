@@ -4,7 +4,9 @@ import router from './router'
 import VueCookies from 'vue-cookies';
 import datepicker from 'v-calendar';
 import Vuetify from 'vuetify';
+import configPlugin from '@/config'
 
+Vue.use(configPlugin)
 Vue.config.productionTip = false
 Vue.use(VueCookies);
 Vue.use(datepicker);
