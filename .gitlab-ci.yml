@@ -4,7 +4,9 @@ stages:
 build:
   image: node:lts-alpine
   stage: build
-  script: npm install && npm run build
+  script:
+    - echo $PROD_ENV > .env.production
+    - npm install && npm run build
   artifacts:
     paths:
       - dist
