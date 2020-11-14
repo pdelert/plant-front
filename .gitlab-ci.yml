@@ -6,6 +6,7 @@ build:
   stage: build
   script:
     - echo $PROD_ENV > .env.production
+    - cat .env.production
     - npm install && npm run build
   artifacts:
     paths:
