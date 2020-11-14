@@ -1,26 +1,33 @@
 stages:
-  - envs
+#  - envs
   - build
   - push
 
-envs:
-  stage: envs
-  script:
-    - echo $VUE_APP_AUTH_URL >> .env
-    - echo $VUE_APP_BACKEND_URL >> .env
-    - echo $VUE_APP_AUTH_AUDIENCE >> .env
-    - echo $VUE_APP_AUTH_COOKIE_DOMAIN >> .env
-    - echo $VUE_APP_CLIENT_ID >> .env
-    - echo $VUE_APP_CLIENT_SECRET >> .env
-  artifacts:
-    paths:
-      - .env
+#envs:
+#  stage: envs
+#  script:
+#    - echo VUE_APP_AUTH_URL=$VUE_APP_AUTH_URL >> .env.production
+#    - echo VUE_APP_BACKEND_URL=$VUE_APP_BACKEND_URL >> .env.production
+#    - echo VUE_APP_AUTH_AUDIENCE=$VUE_APP_AUTH_AUDIENCE >> .env.production
+#    - echo VUE_APP_AUTH_COOKIE_DOMAIN=$VUE_APP_AUTH_COOKIE_DOMAIN >> .env.production
+#    - echo VUE_APP_CLIENT_ID=$VUE_APP_CLIENT_ID >> .env.production
+#    - echo VUE_APP_CLIENT_SECRET=$VUE_APP_CLIENT_SECRET >> .env.production
+#  artifacts:
 #    reports:
-#      dotenv: .env
+#      dotenv: .env.production
 build:
   image: node:lts-alpine
   stage: build
-  script: ls -la && npm install && npm run build
+  script:
+    - echo $VUE_APP_AUTH_URL
+    - echo "VUE_APP_AUTH_URL=$VUE_APP_AUTH_URL" >> .env.production
+    - echo "VUE_APP_BACKEND_URL=$VUE_APP_BACKEND_URL" >> .env.production
+    - echo "VUE_APP_AUTH_AUDIENCE=$VUE_APP_AUTH_AUDIENCE" >> .env.production
+    - echo "VUE_APP_AUTH_COOKIE_DOMAIN=$VUE_APP_AUTH_COOKIE_DOMAIN" >> .env.production
+    - echo "VUE_APP_CLIENT_ID=$VUE_APP_CLIENT_ID" >> .env.production
+    - echo "VUE_APP_CLIENT_SECRET=$VUE_APP_CLIENT_SECRET" >> .env.production
+    - chmod +x .env.production
+    - ls -la && cat .env.production && npm install && npm run build
   artifacts:
     paths:
       - dist
