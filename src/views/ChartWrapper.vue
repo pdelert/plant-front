@@ -116,6 +116,21 @@ export default {
     },
     fillOptions() {
       this.options = {
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+            label: function (tooltipItems, data) {
+              let label = data.datasets[tooltipItems.datasetIndex].label || '';
+
+              if (label) {
+                label += ': ';
+              }
+              label += Math.round(tooltipItems.yLabel * 100) / 100;
+              return label + '%';
+            }
+          }
+        },
         scales: {
           yAxes: [{
             ticks: {
