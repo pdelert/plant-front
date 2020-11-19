@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 Vue.use(VueCookies);
 Vue.use(datepicker);
 Vue.use(Vuetify);
+Vue.use(require('vue-moment'));
 
 new Vue({
   router,

@@ -90,7 +90,7 @@ export default {
             const data = [];
             const threshold = [];
             for (const element of response.data) {
-              labels.push(element['time'])
+              labels.push(this.convertToLocalDate(['time']))
               data.push(element['dry_level'])
               threshold.push(element['threshold'])
             }
