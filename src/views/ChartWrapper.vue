@@ -90,7 +90,7 @@ export default {
             const data = [];
             const threshold = [];
             for (const element of response.data) {
-              labels.push(this.convertToLocalDate(['time']))
+              labels.push(element['time'])
               data.push(element['dry_level'])
               threshold.push(element['threshold'])
             }
@@ -120,6 +120,24 @@ export default {
           yAxes: [{
             ticks: {
               beginAtZero: false,
+            }
+          }],
+          xAxes: [{
+            type: 'time',
+            distribution: 'series',
+            time: {
+              tooltipFormat:'YYYY-MM-DD HH:mm:ss',
+              displayFormats: {
+                'millisecond':'HH:mm:ss',
+                'second': 'HH:mm:ss',
+                'minute': 'HH:mm:ss',
+                'hour': 'HH:mm:ss',
+                'day': 'HH:mm:ss',
+                'week': 'HH:mm:ss',
+                'month': 'HH:mm:ss',
+                'quarter': 'HH:mm:ss',
+                'year': 'HH:mm:ss',
+              }
             }
           }]
         }
